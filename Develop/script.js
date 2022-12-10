@@ -6,7 +6,7 @@ $("#currentDay").text("Today's date is " + today.format("dddd, MMMM D"));
 
 // Gets the current hour
 var currenthour = dayjs().hour();
-var currenthour = 22;
+var currenthour = 24;
 var date = "th";
 
 // Translates the current hour being 0 to 24 for midnight
@@ -44,7 +44,7 @@ function midnight() {
 if (currenthour == 24) {
   $(".description12pm").text("Current Hour");
 }};
-setInterval(midnight);
+setInterval(midnight,1000);
 
 
 
@@ -138,7 +138,7 @@ for (let i = 1; i < 13; i++) {
 // Gets all the pm tasks
 for (let i = 1; i < 13; i++) {
   var taskcontent = $(".description"+[i]+"pm");
-  var savedtask = localStorage.getItem("pmhourtask");
+  var savedtask = localStorage.getItem([i] + "pmhourtask");
   taskcontent.text(savedtask);
 }
 
