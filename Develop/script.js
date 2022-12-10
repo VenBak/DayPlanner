@@ -17,38 +17,73 @@ if (currentday == 1 || currentday == 11 || currentday == 21 || currentday == 31)
   date = "nd";
 } else if (currentday == 3){
   date = "rd";
-} else if (currentday == 8 || currentday == 20) {
+} else if ((currentday == 8) || (currentday == 20)) {
   date = "th";
 }
 
-// Get the saved tasks from local storage
-var nineamtext = $(".description9am")
-var savedtask = localStorage.getItem("9amtask");
-nineamtext.text(savedtask);
+// Adds present attribute if the current hour is am
+for (let i = 1; i < 13; i++) {
+  if (currenthour == i) {
+    var amtask = $("#hour-"+[i]);
+    $(amtask).removeClass();
+    $(amtask).addClass("row time-block present");
+// Adds a past atttribute to all element before the current hour 
+// except all am elements less than 9 
+} else if (i < currenthour && i > 9) {
+  $("#hour-"+[i]).removeClass();
+  $("#hour-"+[i]).addClass("row time-block past");
+}};
 
-var nineamtext = $(".description10am")
-var savedtask = localStorage.getItem("10amtask");
-nineamtext.text(savedtask);
+// Adds present attribute if the current hour is pm
+for (let i = 12; i < 25; i++) {
+  if (currenthour == i) {
+  var pmtask = $("#hour-"+[i]);
+  $(pmtask).removeClass();
+  $(pmtask).addClass("row time-block present");
+} else if (i < currenthour)
+$("#hour-"+[i]).removeClass();
+$("#hour-"+[i]).addClass("row time-block past");
+};
 
-
-
-
-
+// Adds a future attribute to hours greater than the current
+// for (let i = 9; i < 12; i++) {
+//   if (currenthour > i && currenthour != i) {
+//     var amtaskpart1 = $("#hour-"+[i]);
+//     $(amtaskpart1).removeClass();
+//     $(pmtask).addClass("row time-block future");
+//   } else if (currenthour < i && currenthour != i) {
+//     var amtaskpart1 = $("#hour-"+[i]);
+//     $(amtaskpart1).removeClass();
+//     $(pmtask).addClass("row time-block past");
+//   }
+// }
 
 // Saves text from textarea into local storage for all textboxes
 $(".saveBtn").click(function (e) { 
   e.preventDefault();
-  var text9am = $(".description9am").val();
-  console.log(text9am);
-  localStorage.setItem("9amtask", text9am)
-
-
-  var text10am = $(".description10am").val();
-  console.log(text10am);
-  localStorage.setItem("10amtask", text10am);
-
-
+  // Loops over all am tasks and sets the content of the text are in the local storage
+  for (let i = 1; i < 13; i++) {
+    localStorage.setItem( [i] + "amhourtask", $(".description"+ [i] +"am").val());
+  }
+  // Loops over all pm tasks
+  for (let i = 1; i < 13; i++) {
+    localStorage.setItem([i] + "pmhourtask", $(".description"+ [i] +"pm").val());
+  }
 });
+
+// Gets all the am tasks from the local storage to display them
+for (let i = 1; i < 13; i++) {
+  var taskcontent = $(".description"+[i]+"am");
+  var savedtask = localStorage.getItem([i] + "amhourtask");
+  taskcontent.text(savedtask); 
+}
+
+// Gets all the pm tasks
+for (let i = 1; i < 13; i++) {
+  var taskcontent = $(".description"+[i]+"pm");
+  var savedtask = localStorage.getItem("pmhourtask");
+  taskcontent.text(savedtask);
+}
 
 $(function saveItem() {
     
