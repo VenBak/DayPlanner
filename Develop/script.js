@@ -6,7 +6,7 @@ $("#currentDay").text("Today's date is " + today.format("dddd, MMMM D"));
 
 // Gets the current hour
 var currenthour = dayjs().hour();
-var currenthour = 24;
+var currenthour = 9;
 var date = "th";
 
 // Translates the current hour being 0 to 24 for midnight
