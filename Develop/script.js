@@ -21,29 +21,51 @@ if (currentday == 1 || currentday == 11 || currentday == 21 || currentday == 31)
   date = "th";
 }
 
-// Adds present attribute if the current hour is am
+// Adds current hour to the content of the current hour text area for all the am options
 for (let i = 1; i < 13; i++) {
+  if (currenthour == i) {
+    $(".description"+[i]+"am").text("Current Hour");
+}};
+
+// Adds current hour to the current hour text area for all pm options
+for (let i = 1; i < 13; i++) {
+  if (currenthour - 12 == i) {
+    $(".description"+[i]+"pm").text("Current Hour");
+}};
+
+// Loops over all of the am elements
+for (let i = 1; i < 13; i++) {
+  // Adds present attribute if the current hour is am
   if (currenthour == i) {
     var amtask = $("#hour-"+[i]);
     $(amtask).removeClass();
     $(amtask).addClass("row time-block present");
+    $(".description"+ [i] + "am")
 // Adds a past atttribute to all element before the current hour 
 // except all am elements less than 9 
 } else if (i < currenthour && i > 9) {
   $("#hour-"+[i]).removeClass();
   $("#hour-"+[i]).addClass("row time-block past");
+// Adds a future attribute if the index and current hour are less but greater than 8
+} else if (currenthour ) {
 }};
 
-// Adds present attribute if the current hour is pm
+// Loops over all hours over 12, AKA 12-24pm
 for (let i = 12; i < 25; i++) {
+  // Adds present attribute if the current hour is pm
   if (currenthour == i) {
   var pmtask = $("#hour-"+[i]);
   $(pmtask).removeClass();
   $(pmtask).addClass("row time-block present");
-} else if (i < currenthour)
+  // Adds past attribute if the index is less than the current hour
+} else if (i < currenthour) {
 $("#hour-"+[i]).removeClass();
 $("#hour-"+[i]).addClass("row time-block past");
-};
+  // Adds a future attribute if the index is greater than the current hour 
+} else if (i > currrenthour) {
+$("#hour-"+[i]).removeClass();
+$("#hour-"+[i]).addClass("row time-block future");
+}};
 
 // Adds a future attribute to hours greater than the current
 // for (let i = 9; i < 12; i++) {
