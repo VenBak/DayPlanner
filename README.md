@@ -14,7 +14,7 @@ The purpose of this project was to develop a day planner using html, css and pri
 
 ## Installation
 
-You can either clone the repo or click on this link: 
+You can either clone the repo or click on this link: https://venbak.github.io/DayPlanner/ 
 
 ## Usage
 
