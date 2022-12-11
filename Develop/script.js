@@ -1,7 +1,7 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-var today = dayjs()
+var today = dayjs();
 $("#currentDay").text("Today's date is " + today.format("dddd, MMMM D"));
 
 // Gets the current hour
@@ -54,7 +54,7 @@ for (let i = 1; i < 13; i++) {
     var amtask = $("#hour-"+[i]);
     $(amtask).removeClass();
     $(amtask).addClass("row time-block present");
-    $(".description"+ [i] + "am")
+    $(".description"+ [i] + "am");
 // Adds a past atttribute to all element before the current hour 
 // except all am elements less than 9 
 } else if (i < currenthour && i > 9) {
@@ -141,6 +141,12 @@ for (let i = 1; i < 13; i++) {
   taskcontent.text(savedtask);
 }
 
-for (let index = 0; index < 7; index++) {
-  console.log([index])
+function set() {
+for (let i = 1; i < 13; i++) {
+  localStorage.setItem([i]+ "amhourtask", $(".description"+ [i] +"am").val());
 }
+// Loops over all pm tasks
+for (let i = 1; i < 13; i++) {
+  localStorage.setItem([i] + "pmhourtask", $(".description"+ [i] +"pm").val());
+}}
+set();
