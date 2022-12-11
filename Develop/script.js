@@ -101,12 +101,25 @@ $("#hour-"+[i]).removeClass();
 $("#hour-"+[i]).addClass("row time-block future");
 }};
 
+// Adds a future attribute to hours greater than the current
+// for (let i = 9; i < 12; i++) {
+//   if (currenthour > i && currenthour != i) {
+//     var amtaskpart1 = $("#hour-"+[i]);
+//     $(amtaskpart1).removeClass();
+//     $(pmtask).addClass("row time-block future");
+//   } else if (currenthour < i && currenthour != i) {
+//     var amtaskpart1 = $("#hour-"+[i]);
+//     $(amtaskpart1).removeClass();
+//     $(pmtask).addClass("row time-block past");
+//   }
+// }
+
 // Saves text from textarea into local storage for all textboxes
 $(".saveBtn").click(function (e) { 
   e.preventDefault();
   // Loops over all am tasks and sets the content of the text are in the local storage
   for (let i = 1; i < 13; i++) {
-    localStorage.setItem([i] + "amhourtask", $(".description"+[i]+"am").val());
+    localStorage.setItem([i]+ "amhourtask", $(".description"+ [i] +"am").val());
   }
   // Loops over all pm tasks
   for (let i = 1; i < 13; i++) {
@@ -128,3 +141,6 @@ for (let i = 1; i < 13; i++) {
   taskcontent.text(savedtask);
 }
 
+for (let index = 0; index < 7; index++) {
+  console.log([index])
+}
